@@ -6,7 +6,10 @@ function Newmeetup(){
   
   async function  formhandler(meetsups){
  
-     const response = await fetch('/api/new-meetup',{ method:'POST', body:JSON.stringify(meetsups),headers:{
+     const response = await fetch('/api/new-meetup',{
+        method:'POST', 
+        body:JSON.stringify(meetsups),
+        headers:{
          'Content-Type':'application/json'
        }
      })
