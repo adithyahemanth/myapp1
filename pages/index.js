@@ -31,7 +31,8 @@ export async function getStaticProps(){
             image:meet.image
         }))
 
-    }
+    },
+    revalidate: 1
 };
 }
 export  default Homepage
