@@ -1,8 +1,30 @@
 import { Fragment } from "react"
 import {MongoClient,ObjectId} from 'mongodb'
 
+
+
 import Meetupdetails from '../../components/meetups/Meetupdetails'
 
+
+
+
+
+function Newmeetupid(props){
+
+
+
+    return( <Fragment>
+    <Meetupdetails
+    id={props.meetupdata.id}
+    alt={props.meetupdata.description}
+    image={props.meetupdata.image}
+    title={props.meetupdata.title}
+    address={props.meetupdata.address}
+    description={props.meetupdata.description}
+    />
+    </Fragment>
+    )
+    }
 
 export async function getStaticPaths(){
     
@@ -40,15 +62,18 @@ export async function getStaticProps(context){
          const selected= await meetupscollection.findOne({
              _id: ObjectId(meetupId),
         })
+
+        client.close()
           return{
         props:{
-         meetupdata :    {
+         meetupdata:{
+             id:selected._id.toString(),
              title:selected.title,
              image:selected.image,
              description:selected.description,
              address:selected.address
-          
-         }
+            },
+         
     
         
          
@@ -57,17 +82,5 @@ export async function getStaticProps(context){
 
 
 }
-function Newmeetupid(props){
-
-    return( <Fragment>
-    <Meetupdetails
-    image={props.meetupdata.image}
-    title={props.meetupdata.title}
-    address={props.meetupdata.address}
-    description={props.meetupdata.description}
-    />
-    </Fragment>
-    )
-    }
     
 export  default Newmeetupid

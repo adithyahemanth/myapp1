@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 
 
 async function handler(req , res){
@@ -6,6 +6,7 @@ async function handler(req , res){
 if(req.method ==='POST')
 {
 const data=req.body
+console.log(data)
 
 const client=await MongoClient.connect('mongodb+srv://meetup:meetup123@cluster0.hnmkb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
@@ -13,15 +14,13 @@ const db=client.db()
 
 const meetupscollection = db.collection('meetups')
 
-const result =await meetupscollection.insertOne(data)
+const result =await meetupscollection.deleteOne({_id:ObjectId(data)})
 
 console.log(result)
 
-res.status(201).json({message:'data inserted! '})
+res.status(201).json({message:'data deleted! '})
 
 }
-client.close(
-    
-)
+client.close()
 }
 export default handler

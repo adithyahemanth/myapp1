@@ -2,11 +2,6 @@
     align-items: center;
     text-align: center;
 }
-.header img{
-    width:100%;
-    margin:10px,
-
-}
 .header button{
     margin-right:10px;
     margin-left:10px;
@@ -19,4 +14,5 @@
     border-radius:25px;
     background-color: #77002e;
     cursor:pointer;
+    margin-top:40px
 }
